@@ -1,15 +1,15 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Hyperengage Product Documentation",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/hyperengage-logo.svg",
+    "light": "/logo/hyperengage-logo.svg"
   },
-  "favicon": "/favicon.png",
+  "favicon": "/heFavicon.png",
   "colors": {
-    "primary": "#12A7D3",
-    "light": "#81D7F7",
-    "dark": "#004E7A"
+    "primary": "#6D28D9",
+    "light": "#8B5CF6",
+    "dark": "#4C1D95"
   },
   "topbarLinks": [
     {
