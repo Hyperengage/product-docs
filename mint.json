@@ -1,9 +1,9 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Hyperengage Product Documentation",
+  "name": "Hyperengage Docs",
   "logo": {
-    "dark": "/logo/hyperengage-logo.svg",
-    "light": "/logo/hyperengage-logo.svg"
+    "dark": "/logo/he-dark.svg",
+    "light": "/logo/he.svg"
   },
   "favicon": "/heFavicon.png",
   "colors": {
@@ -11,15 +11,9 @@
     "light": "#8B5CF6",
     "dark": "#4C1D95"
   },
-  "topbarLinks": [
-    {
-      "name": "Documentation",
-      "url": "https://mintlify.com/docs"
-    }
-  ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://hyperengage.io/"
   },
   "tabs": [
     {
@@ -29,12 +23,12 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "group": "Getting Started",
+      "pages": ["getting-started/start-here", "getting-started/what-to-track"]
     },
     {
-      "group": "Essentials",
-      "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
+      "group": "Guides",
+      "pages": ["quickstart/install", "quickstart/identify", "quickstart/track"]
     },
     {
       "group": "API Documentation",
@@ -51,9 +45,9 @@
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/hyperengage",
+    "github": "https://github.com/hyperengage",
+    "linkedin": "https://www.linkedin.com/company/hyperengage"
   },
   "backgroundImage": "/background.png"
 }

@@ -1,0 +1,73 @@
+---
+title: 'Identify Users and Accounts'
+icon: 'id-badge'
+description: 'Get insights into which users and companies are engaging with your product.'
+iconType: 'solid'
+---
+
+<Card title="Pre-requisites" icon="code" href="/quickstart/install">
+> Have you installed the Hyperengage SDK?
+>
+> If not, please [install the Hyperengage SDK](#hyperengage-sdk-installation-guide) before proceeding with the `.identify` method.
+</Card>
+
+## Users
+
+### Overview
+This guide will walk you through the `identify` method to effectively identify your product's users. By doing so, you can monitor which users are triggering events in Hyperengage. It's advisable to integrate this code snippet where user sign-ups, logins, or account details are updated.
+
+### Code Implementation
+
+Replace `YOUR_USER_ID` with a distinct identifier, ideally the user ID from your database. It's also madatory to add your user's name and email. It's also beneficial to include the user's other "traits" such as avatar, role, etc. This data will be displayed on the user's profile and can be utilized to filter users in reports.
+
+<CodeGroup>
+
+```javascript Browser
+window.hyperengage(
+  'identify_user', {
+    user_id: 'YOUR_USER_ID',
+    traits: {
+      name: "YOUR_USER_NAME",
+      email: "YOU_USER_EMAIL"
+    }}
+);
+```
+
+```javascript Node
+hyperengage.identify_user({
+  user_id: 'YOUR_USER_ID',
+  traits: {
+    name: "YOUR_USER_NAME",
+    email: "YOU_USER_EMAIL"
+  }
+});
+```
+</CodeGroup>
+## Companies
+### Overview
+For B2B products, it's common to have multiple users accessing your product within a "workspace". This guide offers instructions on the group method to effectively identify companies using your product.
+
+By implementing this, you can monitor company-level usage in Hyperengage, view individual company profiles, and see the users associated with each company. It's recommended to incorporate this code snippet alongside your identify call, such as during user sign-ups or logins.
+
+### Code Implementation
+Substitute YOUR_ACCOUNT_ID with unique identifiers, ideally the workspace ID from your database. It's also mandatory to include the company's name. Any other "traits" such as avatar, company_size, etc can also be added. This information will be displayed on the company's profile and can be utilized to filter companies in views.
+
+<CodeGroup>
+```javascript Browser
+window.hyperengage(
+  'identify_account', {
+    account_id: 'YOUR_ACCOUNT_ID', 
+    traits: {
+      name: 'YOUR_ACCOUNT_NAME',
+    }}
+);
+```
+``` javascript Node
+hyperengage.identify_account({
+  account_id: 'YOUR_ACCOUNT_ID', 
+  traits: {
+    name: 'YOUR_ACCOUNT_NAME',
+  }
+});
+```
+</CodeGroup>
