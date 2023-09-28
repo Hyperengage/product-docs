@@ -1,0 +1,48 @@
+---
+title: 'What Metrics to track?'
+icon: 'circle-info'
+iconType: 'solid'
+---
+
+## Your Comprehensive Tracking and Integration Guide
+To fully leverage Hyperengage and understand user interactions within your product, it's essential to capture:
+
+- Who your **Users** are (e.g. their email address, role, etc.)
+- What **actions** they undertake.
+
+If you're new to tracking, don't worry. We'll walk you through how to set it up. Before we delve deeper, here are some basic tips to optimize your Hyperengage experience:
+
+### Begin with 5 Events
+For those new to information tracking, it might seem daunting with all the potential events to track. We recommend starting simple:
+
+- `Signed up`
+- `Performed an important action` (e.g., `Checked out`, `Created Data`)
+- `Trial Started`
+- `Team Member Invited`
+
+Use the Object-Action convention for naming events, such as `Project Created` or `Message Dispatched`. The shorter and more descriptive the event name, the better
+
+### Start with 5 Traits
+Traits offer a refined way to filter and focus on particular user and company groups. Consider the following 5 traits we recommend:
+
+- Subscription status (e.g., `Free`, `Trial`, `Paid`)
+- Role (e.g., `Admin`, `Editor`, `Viewer`)
+- Job title (e.g., `CEO`, `Developer`, `Designer`)
+- Signup source (e.g., `Organic`, `Referral`, `Paid Ad`)
+- Name & Email
+
+For B2B models, emphasize company-related traits. B2C models should focus on user-specific traits.
+
+## Integrating Hyperengage with Segment
+
+Hyperengage streamlines the process of syncing your user and account data. By linking your account, `identify`, `track`, and `group` calls with user or account data will be processed by Hyperengage, bypassing the need for manual API integrations.
+
+We advocate for the Segment B2B Spec for dispatching account lifecycle events. Hyperengage is fully compatible with these events. For instance:
+
+- `Signed Up` - Generates a user profile in Hyperengage
+- `Account Created` - Initiates a new account in Hyperengage
+- `Account Added User` and `Account Removed User` - Modifies user status within an account
+
+To integrate with Segment, head to the `Integrations` tab in Hyperengage, click on the Segment logo, and proceed with the guided steps. You'll need to authenticate with your Segment account to grant Hyperengage access.
+
+Ready to dive into Hyperengage? [Proceed to our quick start guide](#).

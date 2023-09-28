@@ -1,0 +1,38 @@
+---
+title: 'Install'
+icon: 'code'
+iconType: 'solid'
+---
+# Hyperengage SDK Installation Guide
+
+Installing the Hyperengage SDK is straightforward. Select your preferred language and integrate the provided code into your codebase.
+
+<CodeGroup>
+
+```html Browser
+<script 
+  src="https://unpkg.com/@hyperengage/sdk-js/dist/web/lib.js" 
+  data-tracking-host="https://staging-events.hyperengage.io" 
+  data-workspace-key=YOUR_WOKSPACE_KEY
+  data-key=YOUR_API_KEY
+  data-init-only="true"
+  defer></script>
+<script>window.hyperengage = window.hyperengage || (function(){(window.hyperengageQ = window.hyperengageQ || []).push(arguments);})</script>
+```
+
+```javascript Node
+// Install the npm package
+npm i @hyperengage/sdk-js --save
+
+// After installation, initialize the client
+const hyperengage = hyperengageClient({
+    key: YOUR_WOKSPACE_KEY,
+    workspace_key: YOUR_API_KEY,
+    tracking_host: "https://staging-events.hyperengage.io",
+  });
+```
+</CodeGroup>
+
+## Next Steps: User Identification
+Once the SDK is in place, your subsequent action should be to identify your users and associated companies.
+

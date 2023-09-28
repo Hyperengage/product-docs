@@ -1,0 +1,49 @@
+---
+title: 'Track Events'
+icon: 'location-question'
+iconType: 'solid'
+description: 'Gain insights into user activities within your product.'
+---
+
+<Card title="Pre-requisites" icon="code" href="/quickstart/identify">
+> Have you started identifying your users and accounts?
+>
+> If not, please [implement the .identify call](#hyperengage-identify-guide) before proceeding with the `.track` method.
+</Card>
+
+
+### Overview
+This guide will help you understand how to effectively track user interactions with your product. After identifying users, you can monitor their actions, feature usage frequency, and more. The `track` method allows you to log events on behalf of your users. Integrate this code snippet for basic actions like "signed up", "logged in", and other events that represent your product's core features.
+
+For Hyperengage, core actions might include creating and updating signals, leading to events like "created signal" and "updated signal".
+
+### Code Implementation
+
+Replace `EVENT_NAME` with a distinct identifier for the event. You can also provide additional details using the properties object.
+
+<CodeGroup>
+
+```javascript Browser
+window.hyperengage(
+  'track',
+  'EVENT_NAME', {
+    properties: {
+      custom_property: "YOUR CUSTOM PROPS",
+    }
+  }
+);
+```
+
+```javascript Node
+hyperengage.track(
+  'EVENT_NAME', {
+    properties: {
+      test: "Test-1"
+    }
+  }
+);
+```
+</CodeGroup>
+
+## Dive into Hyperengage!
+After setting up the .identify, .group, and .track methods and sending track events, you're all set to explore [Hyperengage!](https://hyperengage.io/)
