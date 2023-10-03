@@ -16,32 +16,20 @@
     "url": "https://hyperengage.io/"
   },
   "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
+ 
   ],
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": ["getting-started/start-here", "getting-started/what-to-track"]
+      "pages": ["getting-started/start-here", "getting-started/what-to-track" ,"getting-started/understanding-our-data-model"]
+    },
+    {
+      "group": "Core Features",
+      "pages": ["core-features/how-to-use-views"]
     },
     {
       "group": "Guides",
       "pages": ["quickstart/install", "quickstart/identify", "quickstart/track"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
-      ]
     }
   ],
   "footerSocials": {

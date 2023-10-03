@@ -1,0 +1,124 @@
+---
+title: 'Understanding our data model'
+icon: 'circle-info'
+iconType: 'solid'
+---
+
+## Data requirements
+
+**Tier-1 Accounts User profiles and usage events** 
+
+- **Accounts and user profiles**
+    - Link your segment account or send directly via our tracking API
+        - Some details on common fields that we expect in the data to add maximum value
+
+- **Mapping of entities across data sources:** when multiple data sources collect information on the same physical user or account, a map of entities across these different sources must be provided, i.e. the map would say, “this account in Salesforce is this user group in the product”.
+
+## Accessing your data: how we connect to your data
+
+We connect to your data in the following ways:
+
+1. **Streaming event sources like Segment** (no engineering lift; requires setting up Hyperengage as a destination in the sources admin panel)
+    1. HE receives events directly from Segment or another Webhook and stores them in our own data warehouse.
+    2. The customer must OAuth into Segment and configure Hyperengage as a destination (takes 1-2 minutes).
+    - **📌 QUICK START: Instructions for Connecting Segment**
+        
+        
+
+<Accordion title="🚦 3 Simple Steps to Connect Segment">
+
+1. Sign up at app.hyperengage.io
+2. Walk through the onboarding flow that has a guide on how to connect segment as a source 
+    - Note: we recommend using client-side tracking as the source, or whatever would be tracking the most relevant event data to understand how users are using the product.
+
+### 🧾 Checklist for success with Segment
+
+- [ ] Added Hyperengage as a destination in Segment
+- [ ] Segment track, identify, and group calls are implemented
+    - [ ] Segment track calls contain top-level `userId`
+    - [ ] Segment identify calls contain top-level `userId`
+    - [ ] Segment identify calls contain `email` trait
+    - [ ] Segment group calls contain `groupId` as top-level field
+    - [ ] Segment group calls contain a trait that can be used to map to accounts in CRM and other apps
+
+</Accordion>
+
+
+
+       
+2. **Application sources like Salesforce, Stripe, etc** (COMING SOON) (no engineering lift; require user credentials to these applications)
+    1. Hyperengage will pull data directly from these sources using ETL and store it in our own data warehouse.
+    2. The customer must provide an API token or walk through an OAuth flow.
+
+## Details on data requirements
+
+Expected key fields that we look for in the data to unify across multiple sources 
+
+1) **Account profiles**
+
+- `company_bio`: A brief description or background of the company.
+- `name`: **(Required)** The official name of the company or account.
+- `account_id`: **(Required)** A unique identifier for the account.
+- `website`: The official website URL of the company.
+- `industry`: The industry or sector the company operates in.
+- `avatar_url`: The URL for the company's logo or avatar. ( if you dont provide one our system will auto enrich one based on name, website etc)
+- `mrr`: Monthly Recurring Revenue for the account.
+- `created_at`: The date and time when the account was created.
+- `trial_expiry_date`: The date when the trial period for the account expires.
+- `trial_start_date`: The date when the trial period for the account started.
+- `is_trial`: A boolean indicating whether the account is on a trial. `True` if on trial, otherwise `False`.
+- `next_renewal_date`: The date when the account's subscription or plan is set to renew.
+- `plan_name`: The name of the subscription or service plan the account is on.
+
+
+
+## Additional Data Requirements
+
+### Common Principles for Data
+
+- All accounts are categorized in a **subscribed bucket** by default.
+- If the `is_trial` field is set to `True`:
+    - The account is categorized in the **trial bucket**.
+    - It's recommended to also set the fields `trial_expiry_date` and `trial_start_date` to activate specific signals and automations.
+- If the `is_churned` field is set to `True`, the account is marked as **churned**.
+- The `created_at` field is interpreted as the **Signup_date**.
+- Custom traits can be sent based on the following:
+    - Allowed data types: number, boolean, timestamp (UTC timestamp with timezone string), float, and arrays (either of strings or numbers).
+    - Nested objects are **not allowed**.
+
+### User Profile Expected Fields
+
+- **Users (Profile of the user)**: Fields marked with an asterisk (*) are mandatory.
+    - `user_id` *
+    - `first_name` *
+    - `last_name` *
+    - `email`
+    - `created_at` *
+
+### Pre defined user fields 
+
+
+- `name`
+- `first_name`
+- `last_name`
+- `avatar`
+- `created_at`
+- `key_user`
+- `description`
+- `email`
+- `title`
+- `username`
+- `linkedin_url`
+- `is_active` (Note: If `is_active` is set to `False`, the user will be marked as inactive.)
+
+### Events Data
+
+- **Events (Actions performed by the user)**
+    - **Event name**
+    - `timestamp`
+    - `user_id`
+    - `account_id`
+    - **Event ID**: A unique ID to identify the specific event.
+    - **Other event properties** (Optional): JSON of any event properties you wish to send.
+        - Allowed data types for properties: Number, Boolean, Timestamp with timezone UTC string, and arrays (either of strings or numbers).
+
