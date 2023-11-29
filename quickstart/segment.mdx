@@ -1,0 +1,122 @@
+---
+title: 'Segment Integration'
+icon: 'location-question'
+iconType: 'solid'
+description: 'How to connect your data sources using segment integration.'
+---
+
+<Card title="Learn more about our data model" icon="code" href="getting-started/understanding-our-data-model">
+> Learn which data points you should be sending via your segment sources ?
+</Card>
+
+Video Guide
+<iframe
+  width="800"
+  height="500"
+  src="https://www.loom.com/embed/7998a22ef030444aae1d8238bc445b3f?sid=9fd76531-cb79-4680-a680-a0d6c5f3714d"
+  title="Loom Video Player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+### Overview
+This guide will help you understand how to effectively track user interactions with your product. After identifying users, you can monitor their actions, feature usage frequency, and more. The `track` method allows you to log events on behalf of your users. Integrate this code snippet for basic actions like "signed up", "logged in", and other events that represent your product's core features.
+
+For Hyperengage, core actions might include creating and updating signals, leading to events like "created signal" and "updated signal".
+
+Please note that you will only be able to get identify calls, group calls, and track events from your Segment data source. We do not support Segment's journeys, dashboards, etc. 
+### Code Implementation
+
+1. Identify your companies/ Groups/ Accounts 
+Substitute YOUR_ACCOUNT_ID with unique identifiers, ideally the workspace ID from your database. It’s also mandatory to include the company’s name. Any other “traits” such as avatar, company_size, etc can also be added. This information will be displayed on the company’s profile and can be utilized to filter companies in views.
+
+<CodeGroup>
+
+```javascript Browser
+analytics.group("YOUR_ACCOUNT_ID", { 
+  name: "XYZ Commpany", 
+  plan: "premium_plus", 
+  createdAt: "ISO-8601 Timestamp"
+});;
+```
+</CodeGroup>
+
+
+[Segment group docs](https://segment.com/docs/connections/spec/group/)
+
+2. Identify your users
+In order to understand which users are using your product, you need to identify them with Segment's identify call. The best place to invoke the identify call is when a user signs up successfully or logs into your product. 
+
+[Segment identify docs](https://segment.com/docs/connections/spec/identify/)
+
+Here's what a simple example of the code looks like:
+
+<CodeGroup>
+
+```javascript Browser
+analytics.identify("123", { 
+  name: "James Hunt", 
+  email: "james@example.com", 
+  plan: "premium_plus", 
+  logins: 10
+});
+```
+```javascript Node js
+analytics.identify("123", { 
+  name: "James Hunt", 
+  email: "james@example.com", 
+  plan: "premium_plus", 
+  logins: 10,
+  userId:123
+});
+```
+</CodeGroup>
+
+3. Sending track events 
+There are multiple ways to instrument your product with Segment ⏤ Currently we support track events
+
+Track events help you capture data based on your user's behaviour and what actions they take, e.g. when a user clicks on the signup button. How you instrument your product is up to you, but we recommend capturing the hot paths inside a user's journey inside your product. 
+
+Replace EVENT_NAME with a distinct identifier for the event. You can also provide additional details using the properties object.
+[Segment track event docs](https://segment.com/docs/connections/spec/track/)
+
+Here's what a simple example of the code looks like:
+
+<CodeGroup>
+
+```javascript Browser
+analytics.track("EVENT_NAME", { 
+  role: "Memeber", 
+  is_billed: true
+});
+```
+</CodeGroup>
+
+As Hyperengage is geared towards B2B products we always recommend linking your track events to companies with segment you can do this by passing the groupId in the context. 
+If you are using client side tracking libraries userId is automatically added but if you are sening data from your backend it is recommended to explicitly set userId.
+<CodeGroup>
+
+```javascript Browser
+analytics.track("EVENT_NAME", { 
+  role: "Memeber", 
+  is_billed: true
+  context: {
+    groupId: 2
+  }
+});
+```
+```javascript Node Js
+analytics.track("EVENT_NAME", { 
+  userId: 123,
+  role: "Memeber", 
+  is_billed: true
+  context: {
+    groupId: 2
+  }
+});
+```
+</CodeGroup>
+
+## Dive into Hyperengage!
+After setting up the .identify, .group, and .track methods and sending track events, you're all set to explore [Hyperengage!](https://hyperengage.io/)

@@ -13,7 +13,7 @@
   },
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://hyperengage.io/"
+    "url": "https://app.hyperengage.io/"
   },
   "tabs": [
  
@@ -29,7 +29,7 @@
     },
     {
       "group": "Guides",
-      "pages": ["quickstart/install", "quickstart/identify", "quickstart/track"]
+      "pages": ["quickstart/install", "quickstart/identify", "quickstart/track","quickstart/segment"]
     }
   ],
   "footerSocials": {
