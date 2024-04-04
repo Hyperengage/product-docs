@@ -1,0 +1,83 @@
+---
+title: 'Identify Users and Accounts'
+icon: 'id-badge'
+description: 'Get insights into which users and companies are engaging with your product.'
+iconType: 'solid'
+---
+---
+## Endpoint
+To send events from the server side you will use our events API with an s2s token which will be available during onboarding. Kindly use the following endpoint and attach the identify or track payload in the body. You can also send bulk requests in a single call by sending the payload as an array.
+
+```javascript Endpoint
+https://events.hyperengage.io/api/v1/s2s/event?token=YOUR_SERVER_TOKEN
+``` 
+
+## Users
+
+### Overview
+This guide will walk you through the `identify` method to effectively identify your product's users. By doing so, you can monitor which users are triggering events in Hyperengage. It's advisable to integrate this code snippet where user sign-ups, logins, or account details are updated.
+
+### Code Implementation
+
+Replace `YOUR_USER_ID` with a distinct identifier, ideally the user ID from your database. It's also madatory to add your user's name and email. It's also beneficial to include the user's other "traits" such as avatar, role, etc. This data will be displayed on the user's profile and can be utilized to filter users in reports. You will also need the `WORKSPACE_KEY` and `API_KEY` which will be provided during onboarding. 
+<CodeGroup>
+
+```json IDENTIFY
+{
+  "event_id": "",
+  "anonymous_id": "m5fir664u0", // Ideally, use the __eventn_id from the cookies sent to your API  to stitch the user activity.
+  "user_id": "61e5796962664a0d17e4c8d3", // Unique user_id in DB (Mandatory)
+  "account_id": "61e57be7aaa0cb0df7df968e",// Unique account_id in DB (Mandatory)
+  "api_key": "hsr_****", // Get from HE on the onboarding steps
+  "workspace_key": "6eea9ibdht", // Get from HE on the onboarding steps 
+  "src": "hyperengage",
+  "url":"https://app.cardclan.io/app/dashboard", //Optional pass the URL of the page where action was performed
+  "library": "http",
+  "event_type": "user_identify", // event name, this key name is reserved for identifying users
+  "traits": {
+      // Required attributes for users in user_identify
+    "email": "user@domain.com",  // Email address.
+    "created_at": "2021-01-20T09:55:35",    // DateTime string in your system that represents when the user first signed up.
+    "name": "John Doe"  // Full name.
+      // Optional attributes (you can name attributes what you wish)
+  },
+  "screen_resolution": "0",
+}
+```
+</CodeGroup>
+## Companies
+### Overview
+For B2B products, it's common to have multiple users accessing your product within a "workspace". This guide offers instructions on the group method to effectively identify companies using your product.
+
+By implementing this, you can monitor company-level usage in Hyperengage, view individual company profiles, and see the users associated with each company. It's recommended to incorporate this code snippet alongside your identify call, such as during user sign-ups or logins.
+
+### Code Implementation
+Substitute YOUR_ACCOUNT_ID with unique identifiers, ideally the workspace ID from your database. It's also mandatory to include the company's name. Any other "traits" such as avatar, company_size, etc can also be added. This information will be displayed on the company's profile and can be utilized to filter companies in views. You will also need the `WORKSPACE_KEY` and `API_KEY` which will be provided during onboarding.
+
+<CodeGroup>
+``` javascript GROUP
+{
+  "event_id": "",
+  "anonymous_id": "m5fir664u0", // Ideally, use the __eventn_id from the cookies sent to your API  to stitch the user activity.
+  "user_id": "61e5796962664a0d17e4c8d3", // Unique user_id in DB (Mandatory)
+  "account_id": "61e57be7aaa0cb0df7df968e",// Unique account_id in DB (Mandatory)
+  "api_key": "hsr_****", // Get from HE on the onboarding steps
+  "workspace_key": "6eea9ibdht", // Get from HE on the onboarding steps 
+  "src": "hyperengage",
+  "url":"https://app.cardclan.io/app/dashboard", //Optional pass the URL of the page where action was performed
+  "library": "http",
+  "event_type": "account_identify", // event name, this key name is reserved for identifying accounts
+  "traits": {
+    "name": "Hyperengage",
+    "created_at": "2022-02-15T17:25:08",
+    "plan_name": "plan",
+    "industry": "industry",
+    "trial_start_date": "trial_start",
+    "trial_expiry_date": "trial_end",
+    "website": "website" 
+      //attach as many traits to an account as you want
+      //supported data types are number, boolean, text, array of strings 
+  },
+}
+```
+</CodeGroup>

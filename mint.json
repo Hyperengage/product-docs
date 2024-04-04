@@ -29,7 +29,7 @@
     },
     {
       "group": "Guides",
-      "pages": ["quickstart/install", "quickstart/identify", "quickstart/track","quickstart/segment"]
+      "pages": [{ "group": "JavaScript SDK", "icon": "js", "pages": ["js/install", "js/identify", "js/track"] }, { "group": "Serverside API", "icon": "server", "pages": ["server/identify", "server/track"] }, "js/segment"]
     }
   ],
   "footerSocials": {

@@ -1,0 +1,48 @@
+---
+title: 'Track Events'
+icon: 'location-question'
+iconType: 'solid'
+description: 'Gain insights into user activities within your product.'
+---
+
+<Card title="Pre-requisites" icon="code" href="/server/identify">
+> Have you started identifying your users and accounts?
+>
+> If not, please [implement the identify and group calls](#hyperengage-server-guide) before proceeding with the `.track` method.
+</Card>
+
+
+### Overview
+This guide will help you understand how to effectively track user interactions with your product on the server side. After identifying users, you can monitor their actions, feature usage frequency, and more. The `track` method allows you to log events on behalf of your users. Integrate this code snippet for basic actions like "signed up", "logged in", and other events that represent your product's core features.
+
+For Hyperengage, core actions might include creating and updating signals, leading to events like "created signal" and "updated signal".
+
+### Code Implementation
+
+Replace `EVENT_NAME` with a distinct identifier for the event. You can also provide additional details using the properties object.  You will also need the `WORKSPACE_KEY` and `API_KEY` which will be provided during onboarding.
+
+<CodeGroup>
+
+```javascript TRACK
+{
+  "event_id": "",
+  "anonymous_id": "m5fir664u0", // Ideally, use the __eventn_id from the cookies sent to your API  to stitch the user activity.
+  "user_id": "61e5796962664a0d17e4c8d3", // Unique user_id in DB (Mandatory)
+  "account_id": "61e57be7aaa0cb0df7df968e",// Unique account_id in DB (Mandatory)
+  "api_key": "hsr_****", // Get from HE on the onboarding steps
+  "workspace_key": "6eea9ibdht", // Get from HE on the onboarding steps 
+  "src": "hyperengage",
+  "url":"https://app.cardclan.io/app/dashboard", //Optional pass the URL of the page where action was performed
+  "library": "http",
+  "event_type": "Card_Created", // event name, use action notation eg application_created etc
+  "properties": {
+    "category": "Thank You Card" //attach as many properties to an event you want
+    //eg if its plan_upgraded event pass the plan_name , amount, 
+    //supported data types are number, boolean, text, array of strings 
+  }
+}
+```
+</CodeGroup>
+
+## Dive into Hyperengage!
+After setting up the .identify, .group, and .track api calls and sending track events, you're all set to explore [Hyperengage!](https://hyperengage.io/)
